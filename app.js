@@ -30,31 +30,31 @@ app.listen(PORT,()=>{
 app.get('/movies',(req,res)=>{
     connection.query(('SELECT * FROM Movies'),(err,result,fields)=>{
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 });
 app.get('/movies/:id',(req,res)=>{
     connection.query((`SELECT * FROM Movies WHERE MovieID = ${req.params.id}`),(err,result,fields)=>{
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 });
 app.post('/movies',(req,res)=>{
     connection.query((`INSERT INTO Movies (Title,Yearr)
     VALUES ('${req.body.movieName}','${req.body.movieYear}');`),(err,result,fields)=>{
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 });
 app.put('/movies/:id',(req,res)=>{
     connection.query((`UPDATE Movies SET Title='${req.body.movieName}',Yearr='${req.body.movieYear}' WHERE MovieID=${req.params.id}`),(err,result,fields)=>{
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 });
 app.delete('/movies/:id',(req,res)=>{
     connection.query((`DELETE FROM Movies WHERE MovieID=${req.params.id}`),(err,result,fields)=>{
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 });
